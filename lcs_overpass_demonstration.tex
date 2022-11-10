@@ -1,0 +1,45 @@
+% Author: Frank, Wenjun
+The demonstration is done with Longest Common Sub-sequence(LCS)\cite{holmgren_et_al:LIPIcs.ICALP.2022.73} being the Kernel Question. The best search algorithm has a time complexity of O(m*n), where m, n are the length of the two sequences, but Verifying, if a given Sequence is indeed a common Subsequence of the two, takes only O(n), n being the shorter length of the two Sequences. For this Kernel Question, a miner must submit the length of the LCS and the LCS itself as proof for verification.
+
+In the demonstration, an LCS Overpass instance is first deployed on the Ganache Test Network as shown in Figure \ref{TestNet}. To showcase the superiority of the OverPass Protocol, the deployed instance also includes a “compute” method that computes the LCS problem fully on EVM(Figure \ref{LCS}).
+\begin{algorithm}[H]
+    \captionof{figure}[Terminal1]{Terminal 1: Testnet} \label{TestNet}
+    \begin{algorithmic}[1]
+            \State > cd testnet 
+            \State > sh start\_gananche\_testnet.sh 100 
+    \end{algorithmic}
+\end{algorithm}
+\begin{algorithm}[H]
+    \captionof{figure}[Terminal2]{Terminal 2: LCS} \label{LCS}
+    \begin{algorithmic}[1]
+            \State > python3 demo.py LCS
+            \State  contract address: 0xe78A...
+            \State  times\_to\_compute: > 20
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+    \captionof{figure}[Terminal1]{Terminal 3: LCSOverPass} \label{LCSOverPass}
+    \begin{algorithmic}[1]
+            \State > python3 demo.py LCSOverPass
+            \State  contract address: 0xe92A...
+            \State  times\_to\_delegate: > 20
+    \end{algorithmic}
+\end{algorithm}
+\begin{algorithm}[H]
+    \captionof{figure}[Terminal1]{Terminal 3: LCSOverPass} \label{miner}
+    \begin{algorithmic}[1]
+            \State > python3 miner
+            \State Available orders:
+            \State 1. listen <contract\_address>
+            \State 2. unlisten <contract\_address>
+            \State 3. min\_incentive <min\_incentive>
+            \State 4. maximum\_duration <maximum\_duration>
+            \State 5. get\_incentive
+            \State > listen 0xe92A...
+            \State > get\_incentive
+    \end{algorithmic}
+\end{algorithm}
+Then, a User instance is created and many deterministic random test cases of different lengths and alphabet sets are generated and fed into the LCS OverPass instance with both “delegateCompute” (Figure \ref{LCSOverPass})and “compute”(Figure \ref{LCS}). The average Gas cost for the test cases computed in two different ways is recorded. 
+
+And, of course, a Miner instance(Figure \ref{miner}) is created and to listen to the LCS Overpass Contract address and will provide advice for any Tasks whose reward exceeds a fixed number. More detailed instruction introduction can be found in \cite{mu_nathanael_liu_woo_chen_harish_2022}.

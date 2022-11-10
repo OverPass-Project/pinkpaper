@@ -1,0 +1,27 @@
+% Author: Mu
+Smart contracts introduced by Ethereum \cite{wood2014ethereum} provide trust computing. Once a smart contract has been engaged, it will complete exactly how it was coded and no parties can interfere or change the result. However, the computation is usually expensive and slow. There exists a set of problems where there is signs showing that verifying answers is cheaper than searching for the answer. Hence well-defined incentive mechanism can be applied to delegate searching computation to untrusted computational power (off-chain server) while the completeness and soundness of the computation are still guaranteed:
+\begin{itemize}
+    \item  A delegation task is posted on smart contract together with a trusted verification function.
+    \item  Some untrusted machines would listen to the task event and provide answers/advice that could help smart contract solve the problem.
+    \item With the hints from advisor, the client on-chain can compute the legitimate answer in a cheaper way.
+    \item If the hints is illegitimate given by a dishonest advisor, the client will accept with negligible probability.
+\end{itemize}
+
+\subsection{Driving Factor}
+The project is driven by the Pros and Cons own by traditional computer and consented decentralized computers as shown in the following table:
+\begin{footnotesize}
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Function             & Pros           & Cons            \\ \hline
+Traditional Computer & fast and cheap & un-trusted      \\ \hline
+Consented Computer   & trusted        & slow, expensive \\ \hline
+\end{tabular}
+\end{table}
+\end{footnotesize}https://www.overleaf.com/project/636b3aaceb6b7d60b598c921
+OverPass works as a standard to balance the Pros of these two and achieve cheaper and faster trustworthy computation.
+\subsection{Theoretical Background} \label{theory}
+\input{theoretical_background}
+
+\subsection{Previous Work} \label{ch:previous}
+\input{previous_work}

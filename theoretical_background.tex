@@ -1,0 +1,38 @@
+% Author: Mu
+
+The theory of computation is shaped by the Interactive Proof (IP) system\cite{GMR}, where a strong, possibly malicious, prover interact with a weak verifier, and at the end of the computation, the client can output an answer achieving completeness and soundness. There are signs that many problems has cheaper verification algorithm than search algorithm(e.g., NP-complete, sorting). This triggered a novel idea on trust-worthy computation that not all work should be done on the trusted slow "computer", or verifier, as long as the un-trusted computational power can provide proof for the answer to the verifier. This would expand the computational power of consented computers (e.g. EVM) tremendously while the trust of the computation is maintained. The class of problem we focus  are problems with doubly efficient IP scheme\cite{ip_muggles}\cite{goldreich_doubly_efficient_ip} and some P problems with cheap verification system than existing search algorithm.\\
+
+\begin{tikzpicture}[every node/.style={minimum width=1.5cm}]
+\node[alice] (alice) {Verifier $\widetilde{O}(|s|)$};
+\node[bob,evil, right= 4cm of alice, mirrored] (bob) {Prover $O(poly(|s|))$};
+\draw[->, thick] (alice) -- coordinate[midway] (aux) (bob);
+\node[above= 0.3cm of alice] (input) {$s\in\{0,1\}^*$, Language $\mathcal{L}$};
+\node[below= 0.5cm of aux] (etc) {...};
+\node[above= 2.4cm of etc] (title) {\textbf{Doubly Efficient Interactive Proof}:};
+\node[below= 0.7cm of alice] (alice_1) {};
+\node[below= 0.7cm of bob] (bob_1) {};
+\draw[<-,thick] (alice_1)--(bob_1);
+\node[below= 0.9cm of alice] (alice_2) {$\langle P,V\rangle(\mathcal{L},s)\in \{0,1\}$};
+\end{tikzpicture}
+\begin{itemize}
+    \item Completeness: $Pr[\langle P,V\rangle(\mathcal{L},s)=1|s\in \mathcal{L}]\geq 1-negl_1(|s|)$
+    \item Soundness:  $s\notin \mathcal{L}:\forall P^*: Pr[\langle P^*,V\rangle(\mathcal{L},s)=1]\leq negl_2(|s|)$
+\end{itemize}
+An incentive mechanism is made such that miners have the incentive to mine by executing the protocol honestly and the verifier has the incentive to participate and save gas fees from achieving the same goal. An example of the incentive mechanism is as follows:
+\begin{footnotesize}
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+client \textbackslash advisor & Honest                          & Cheat                \\ \hline
+use OverPass                  & (a - $gas_{vrfy}$-i, i- $gas_vrfy$) & (0, - $gas_{vrfy}$)     \\ \hline
+not user OverPass             & (a- $gas_{search}$, 0)             & (a - $gas_{search}$, 0) \\ \hline
+\end{tabular}
+\end{table}
+\end{footnotesize}
+\begin{itemize}
+    \item a: the incentive got by user for getting the legitimate answer of the problem.
+    \item i: the incentive paid by user to advisor.
+    \item $gas_{vrfy}$: the gas fee for verifying an answer.
+    \item $gas_{search}$: the gas fee for searching an answer.
+\end{itemize}
+Given that gas for searching is much higher than gas for verifier, and a wise incentive is set by the client, the (client use OverPass,Advisor be honest) is the Nash Equilibrium. Note that the mechanism would work under the assumption that the client is a rationale and at least one advisor is rationale and selfish, which is very robust.

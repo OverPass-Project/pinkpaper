@@ -1,0 +1,49 @@
+\documentclass[9pt,oneside]{amsart}
+\input{environment}
+\title[OverPass: A Secure Search Delegation Standard For Cheaper Trustworthy Computation]{OverPass: A Secure Search Delegation Standard For Cheaper Trustworthy Computation}
+\author{
+    Mu Changrui\\
+    Joshua Nathanael\\
+    Liu Zhiyang\\
+    Woo Wen Jun\\
+    Chen Keying\\
+    Saravanan Anuja Harish
+}
+\begin{document}
+
+\pagecolor{pagecolor}
+
+\input{abstract}
+
+\maketitle
+
+\setlength{\columnsep}{20pt}
+\begin{multicols}{2}
+
+\section{Introduction}\label{sec:introduction}
+\input{introduction}
+
+\section{OverPass Design}
+\input{overpass_design}
+
+\section{Demonstration / Data Collection}
+\input{lcs_overpass_demonstration}
+\section{Result Analysis}
+\input{result_analysis}
+\section{Conclusion}
+\input{conclusion}
+\newpage
+\pagestyle{plain}
+\printbibliography
+\end{multicols}
+\newpage
+\appendix
+\section{Overpass Standard}
+\input{appendix1}
+\newpage
+\section{LCSOverPass instance}
+\input{appendix2}
+\newpage
+\section{A LCS algorithm}
+\input{appendix3}
+\end{document}
